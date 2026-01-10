@@ -9,10 +9,13 @@ public class Program
     {
         var config = NetworkConfiguration.GetSpecs(generation: GenType.G5);
 
-        var network = new Network(10, 10, 20000, config);
+        double networkWidth = 10;
+        double networkHeight = 10;
+
+        var network = new Network(networkHeight, networkWidth, 20000, config);
         Random rng = new Random();
-        Position posA = new Position(rng.NextDouble() * 10, rng.NextDouble() * 10);
-        Position posB = new Position(rng.NextDouble() * 10, rng.NextDouble() * 10);
+        Position posA = new Position(rng.NextDouble() * networkHeight, rng.NextDouble() * networkWidth);
+        Position posB = new Position(rng.NextDouble() * networkHeight, rng.NextDouble() * networkWidth);
 
         Phone phoneA = new Phone(posA, GenType.G5);
         Phone phoneB = new Phone(posB, GenType.G5);
@@ -20,6 +23,6 @@ public class Program
         network.InitializeStaticNetwork();
         network.AssignSubscribersToTowers(new List<Phone> { phoneA, phoneB });  
 
-        phoneA.SendMessage("hello", network, phoneB);
+        phoneA.SendMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", network, phoneB);
     }
 }

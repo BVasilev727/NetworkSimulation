@@ -1,11 +1,7 @@
 ﻿using NetworkSimulation.Enums;
+using NetworkSimulation.Messenger;
 using NetworkSimulation.Modulation;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NetworkSimulation.NetworkBase
 {
@@ -77,6 +73,8 @@ namespace NetworkSimulation.NetworkBase
             double ber = CalculateBER(message.OriginalData, recoveredBytes);
           
             Console.WriteLine($"This phone received '{decodedText}' | BER: {ber:P2}");
+
+            Messenger.Messenger.AnnounceMessageArrival(message.ModulatedSignal, message.PlannedPath);
         }
 
         private double CalculateBER(byte[] original, byte[] recovered)

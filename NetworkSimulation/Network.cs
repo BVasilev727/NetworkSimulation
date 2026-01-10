@@ -1,5 +1,7 @@
 ﻿using NetworkSimulation.Enums;
 using NetworkSimulation.NetworkBase;
+using NetworkSimulation.Visualization;
+using System.Net;
 
 namespace NetworkSimulation
 {
@@ -18,9 +20,9 @@ namespace NetworkSimulation
 
         public ulong WorkingFrequency { get; private set; } = 5000;
 
-        public Network(double areaLength, double areaWidth, int subscribers, NetworkStandard networkStandard)
+        public Network(double areaHeight, double areaWidth, int subscribers, NetworkStandard networkStandard)
         {
-            _areaHeight = areaLength;
+            _areaHeight = areaHeight;
             _areaWidth = areaWidth;
             _subscribers = subscribers;
             _networkStandard = networkStandard;
@@ -75,6 +77,7 @@ namespace NetworkSimulation
             }
 
             AssignSubscribersToTowers(new List<Phone> { phone1, phone2 });
+            InitializeVisualization();
         }
 
         public void InitializeStaticNetwork()
@@ -130,6 +133,8 @@ namespace NetworkSimulation
                     }
                 }
             }
+
+            InitializeVisualization();
         }
 
         public List<NetworkStation> FindShortestPath(NetworkStation start, NetworkStation finish)
@@ -209,6 +214,11 @@ namespace NetworkSimulation
                 Console.WriteLine("Phones connected to the same station. Delivering immediately");
                 return;
             }
+        }
+
+        private void InitializeVisualization()
+        {
+            _ = new VisualizationHandler(_areaHeight, _areaHeight, Stations);
         }
     }
 }
