@@ -104,6 +104,14 @@ namespace NetworkSimulation.Visualization
             }
         }
 
+        /// <summary>
+        /// Draws the legend on the right of the graph
+        /// </summary>
+        /// <param name="svg">The svg up to this point</param>
+        /// <param name="startX">Starter x coordinate for the legend</param>
+        /// <param name="startY">Starter y coordinate fot the legend</param>
+        /// <param name="senderPos"><see cref="Position"/> of the sender(phone)</param>
+        /// <param name="recipientPos"><see cref="Position"/> of the recipient(phone)</param>
         private void DrawLegend(StringBuilder svg, double startX, double startY, Position senderPos, Position recipientPos)
         {
             double x = startX;

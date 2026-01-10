@@ -18,6 +18,7 @@ namespace NetworkSimulation.Modulation
             _samplesPerSymbol = samplesPerSymbol;
         }
 
+        /// <inheritdoc/>
         public override byte[] Demodulate(double[] data)
         {
             int symbols = data.Length / _samplesPerSymbol;
@@ -53,6 +54,7 @@ namespace NetworkSimulation.Modulation
             return recovered;
         }
 
+        /// <inheritdoc/>
         public override double[] Modulate(byte[] data)
         {
             int numSymbols = data.Length * 4;

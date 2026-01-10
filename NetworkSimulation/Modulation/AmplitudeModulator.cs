@@ -20,6 +20,7 @@ namespace NetworkSimulation.Modulation
             _amplitudeMessage = amplitudeMessage;
         }
 
+        /// <inheritdoc/>
         public override byte[] Demodulate(double[] data)
         {
             int samplesPerBit = 100;
@@ -44,6 +45,7 @@ namespace NetworkSimulation.Modulation
             return SignalConverter.FromBitStream(recoveredBits);
         }
 
+        /// <inheritdoc/>
         public override double[] Modulate(byte[] data)
         {
             int[] bits = SignalConverter.ToBitStream(data); 

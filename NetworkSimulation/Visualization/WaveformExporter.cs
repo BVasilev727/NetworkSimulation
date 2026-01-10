@@ -15,6 +15,11 @@ namespace NetworkSimulation.Visualization
             _samplingRate = samplingRate;
         }
 
+        /// <summary>
+        /// Creates a csv file based on the signal
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="signal"></param>
         public void ExportToCsv(string fileName, double[] signal)
         {
             double deltaT = 1.0 / _samplingRate;

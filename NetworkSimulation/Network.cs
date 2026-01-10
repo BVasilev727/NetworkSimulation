@@ -48,38 +48,10 @@ namespace NetworkSimulation
             }
         }
 
-        public void InitializeNetwork(Phone phone1, Phone phone2)
-        {
-            Stations = new List<NetworkStation>();
-
-            int multiplier = phone1.GenType == GenType.G5 ? 4 : 1;
-
-            int stationCount = (int)(Math.Ceiling(phone1.Position.DistanceTo(phone2.Position)) + 1) * multiplier;
-
-            for (int i = 0; i < stationCount; i++)
-            {
-                double lerpFactor = (double)i / (stationCount - 1);
-                Position stationPosition = new Position(
-                    phone1.Position.XPosition + (phone2.Position.XPosition - phone1.Position.XPosition) * lerpFactor,
-                    phone1.Position.YPosition + (phone2.Position.YPosition - phone1.Position.YPosition) * lerpFactor);
-
-                Stations.Add(new NetworkStation(_networkStandard.Generation, stationPosition));
-            }
-
-            double neighborThreshold = _networkStandard.Range * 1.5;
-
-            foreach (var station in Stations)
-            {
-                var nearbyStations = Stations.Where(x => x!= station && 
-                    station.Position.DistanceTo(x.Position) <= neighborThreshold);
-
-                station.SetNeighbors(nearbyStations.ToList());
-            }
-
-            AssignSubscribersToTowers(new List<Phone> { phone1, phone2 });
-            InitializeVisualization();
-        }
-
+        /// <summary>
+        /// Creates the network.
+        /// Organizes the stations on a grid-like manner and sets <see cref="NetworkStation.NeighboringStations"/>
+        /// </summary>
         public void InitializeStaticNetwork()
         {
             Stations = new List<NetworkStation>();
@@ -137,6 +109,12 @@ namespace NetworkSimulation
             InitializeVisualization();
         }
 
+        /// <summary>
+        /// Determines the shortest path to the recipient station
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="finish"></param>
+        /// <returns></returns>
         public List<NetworkStation> FindShortestPath(NetworkStation start, NetworkStation finish)
         {
             var path = new List<NetworkStation>();
@@ -178,11 +156,19 @@ namespace NetworkSimulation
             return path;
         }
 
+        /// <summary>
+        /// Assigns/connects a single <see cref="Phone"/> to a station
+        /// </summary>
+        /// <param name="phone"></param>
         public void AssignSubscriberToTower(Phone phone)
         {
             phone.ConnectToNearestStation(Stations);
         }
 
+        /// <summary>
+        /// Assigns/connects multiple <see cref="Phone"/>s to a station
+        /// </summary>
+        /// <param name="phones"></param>
         public void AssignSubscribersToTowers(List<Phone> phones)
         {
             foreach (Phone phone in phones)
@@ -191,6 +177,12 @@ namespace NetworkSimulation
             }
         }
 
+        /// <summary>
+        /// Sends a message thru the network
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="recipient"></param>
+        /// <param name="text"></param>
         public void SendMessage(Phone sender, Phone recipient, string text)
         {
             if (sender.ConnectedStation == null)
@@ -216,6 +208,9 @@ namespace NetworkSimulation
             }
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="VisualizationHandler"/>
+        /// </summary>
         private void InitializeVisualization()
         {
             _ = new VisualizationHandler(_areaHeight, _areaHeight, Stations);

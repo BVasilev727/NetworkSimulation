@@ -14,6 +14,11 @@
             yPosition = y;
         }
 
+        /// <summary>
+        /// Calculates the distance to another <see cref="Position"/>
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns>The distance</returns>
         public double DistanceTo(Position position)
         {
             var distanceX = xPosition - position.XPosition;

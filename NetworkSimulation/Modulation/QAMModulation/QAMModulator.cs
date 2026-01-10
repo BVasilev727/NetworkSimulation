@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NetworkSimulation.Modulation.QAMModulation
 {
+    /// <summary>
+    /// QAM modulator for 4/5G
+    /// </summary>
     public class QAMModulator : Modulator
     {
         private readonly int _modulationOrder;
@@ -19,6 +22,7 @@ namespace NetworkSimulation.Modulation.QAMModulation
             _bitsPerSymbol = (int)Math.Log2(modulationOrder);
         }
 
+        /// <inheritdoc/>
         public override byte[] Demodulate(double[] data)
         {
             int samplesPerSymbol = 100;
@@ -60,6 +64,7 @@ namespace NetworkSimulation.Modulation.QAMModulation
             return SignalConverter.FromBitStream(recoveredBits.ToArray());
         }
 
+        /// <inheritdoc/>
         public override double[] Modulate(byte[] data)
         {
             int totalBits = data.Length * 8;

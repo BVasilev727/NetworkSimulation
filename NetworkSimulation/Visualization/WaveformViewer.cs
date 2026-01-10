@@ -14,11 +14,16 @@ namespace NetworkSimulation.Visualization
             Messenger.Messenger.OnMessageReceived += ShowPlot;
         }
 
+        /// <summary>
+        /// Plots a waveform graph
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowPlot(object? sender, TransferEventArgs e)
         {
             ScottPlot.Plot plt = new();
             
-            double[] signal = e.FinalSignal;
+            double[] signal = e.Signal;
             double[] times = new double[signal.Length];
             for (int i = 0; i < times.Length; i++)
                 times[i] = i / _samplingRate;

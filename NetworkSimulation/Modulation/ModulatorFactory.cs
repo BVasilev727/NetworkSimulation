@@ -10,6 +10,12 @@ namespace NetworkSimulation.Modulation
 {
     public static class ModulatorFactory
     {
+        /// <summary>
+        /// Gets the proper modulator based on <see cref="GenType"/>
+        /// </summary>
+        /// <param name="type"><see cref="GenType"/></param>
+        /// <returns>The needed modulator for the network standard</returns>
+        /// <exception cref="Exception">Unknow <see cref="GenType"/></exception>
         public static Modulator GetModulator(GenType type)
         {
             if (type == GenType.G1) return new AmplitudeModulator(5000, 1.0, 0.5);

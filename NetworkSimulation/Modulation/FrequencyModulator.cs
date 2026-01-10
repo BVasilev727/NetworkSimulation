@@ -18,6 +18,7 @@ namespace NetworkSimulation.Modulation
             _frequencyDeviation = frequencyDeviation;
         }
 
+        /// <inheritdoc/>
         public override byte[] Demodulate(double[] data)
         {
             int samplesPerBit = 100;
@@ -47,6 +48,8 @@ namespace NetworkSimulation.Modulation
 
             return SignalConverter.FromBitStream(recovered);
         }
+
+        /// <inheritdoc/>
         public override double[] Modulate(byte[] data)
         {
             int[] bits = SignalConverter.ToBitStream(data);

@@ -3,13 +3,19 @@ namespace NetworkSimulation.Messenger
 {
     public class TransferEventArgs : EventArgs
     {
-        public double[] FinalSignal { get; }
+        /// <summary>
+        /// The signal(phone message)
+        /// </summary>
+        public double[] Signal { get; }
 
+        /// <summary>
+        /// The path of the signal(phone message)
+        /// </summary>
         public List<NetworkStation> Path;
 
         public TransferEventArgs(double[] signal, List<NetworkStation> path)
         {
-            FinalSignal = signal;
+            Signal = signal;
             Path = path;
         }
     }

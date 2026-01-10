@@ -10,7 +10,12 @@ namespace NetworkSimulation.Visualization
         private readonly List<NetworkStation> _allStations;
         private readonly WaveformViewer _waveformViewer;
 
-
+        /// <summary>
+        /// Handles the visualization of the network information
+        /// </summary>
+        /// <param name="areaHeight"></param>
+        /// <param name="areaWidth"></param>
+        /// <param name="allStations"></param>
         public VisualizationHandler(double areaHeight, double areaWidth, List<NetworkStation> allStations)
         {
             _allStations = allStations;
@@ -25,7 +30,7 @@ namespace NetworkSimulation.Visualization
         {
             _graphExporter.ExportToSvg("path.svg", _allStations, e.Path);
 
-            _waveExporter.ExportToCsv("waveform.csv", e.FinalSignal);
+            _waveExporter.ExportToCsv("waveform.csv", e.Signal);
 
 
         }

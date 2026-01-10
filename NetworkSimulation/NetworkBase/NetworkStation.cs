@@ -13,6 +13,10 @@ namespace NetworkSimulation.NetworkBase
     public class NetworkStation
     {
         private GenType _genType;
+
+        /// <summary>
+        /// <see cref="Position"/>
+        /// </summary>
         public Position Position {  get; private set; }
         public double CellRadius { get; private set; }
 
@@ -36,12 +40,22 @@ namespace NetworkSimulation.NetworkBase
             Id = Guid.NewGuid().ToString();
         }
 
+        /// <summary>
+        /// Sets the <see cref="NeighboringStations"/>
+        /// </summary>
+        /// <param name="neighbors"></param>
         public void SetNeighbors(List<NetworkStation> neighbors)
         {
             NeighboringStations.Clear();
             NeighboringStations.AddRange(neighbors);
         }
 
+        /// <summary>
+        /// Passes the signal(phone message) from station to station.
+        /// !!! Recursive method !!!
+        /// </summary>
+        /// <param name="msg"><see cref="Message"/></param>
+        /// <param name="networkNoiseLevel">Noise to be applied to the message</param>
         public void ReceiveAndForward(Message msg, double networkNoiseLevel)
         {
             int entryHopCount = msg.HopCount;

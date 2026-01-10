@@ -63,6 +63,11 @@ namespace NetworkSimulation.Factories
             }
         };
 
+        /// <summary>
+        /// Gets the information about the network standard based on the <see cref="GenType"/> enum
+        /// </summary>
+        /// <param name="generation"><see cref="GenType"/></param>
+        /// <returns><see cref="NetworkStandard"/> information</returns>
         public static NetworkStandard GetSpecs(GenType generation) => _specs[generation];
 
     }
