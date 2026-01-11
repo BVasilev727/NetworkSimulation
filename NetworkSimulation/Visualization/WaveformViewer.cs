@@ -33,6 +33,9 @@ namespace NetworkSimulation.Visualization
             plt.XLabel("Time (seconds)");
             plt.YLabel("Amplitude");
 
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                                "NetworkSimulation"));
+
             string windowPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                                 "NetworkSimulation", $"plot.png");
             plt.SavePng(windowPath, 800, 400);
