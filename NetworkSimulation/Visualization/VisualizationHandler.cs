@@ -32,7 +32,7 @@ namespace NetworkSimulation.Visualization
 
             _waveExporter.ExportToCsv("waveform.csv", e.Signal);
 
-
+            _waveformViewer.ShowPlot(e.Signal);
         }
     }
 }

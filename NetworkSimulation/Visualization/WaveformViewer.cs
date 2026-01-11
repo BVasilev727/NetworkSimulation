@@ -10,8 +10,6 @@ namespace NetworkSimulation.Visualization
         public WaveformViewer(double samplingRate = 44100)
         {
             _samplingRate = samplingRate;
-
-            Messenger.Messenger.OnMessageReceived += ShowPlot;
         }
 
         /// <summary>
@@ -19,11 +17,10 @@ namespace NetworkSimulation.Visualization
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ShowPlot(object? sender, TransferEventArgs e)
+        public void ShowPlot(double[] signal)
         {
             ScottPlot.Plot plt = new();
             
-            double[] signal = e.Signal;
             double[] times = new double[signal.Length];
             for (int i = 0; i < times.Length; i++)
                 times[i] = i / _samplingRate;

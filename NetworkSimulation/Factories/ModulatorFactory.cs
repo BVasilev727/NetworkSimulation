@@ -1,4 +1,5 @@
 ﻿using NetworkSimulation.Enums;
+using NetworkSimulation.Modulation;
 using NetworkSimulation.Modulation.QAMModulation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetworkSimulation.Modulation
+namespace NetworkSimulation.Factories
 {
     public static class ModulatorFactory
     {
